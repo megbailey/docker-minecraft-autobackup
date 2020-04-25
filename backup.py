@@ -70,6 +70,6 @@ for backup_name in results:
 print(str(removal_count) + " server backup(s) have been deleted")
 
 #TODO: Push to github
-os.system('git add -u')
+os.system('git add .')
 os.system('git commit -m " AUTOBACKUP:' + datetime.now().isoformat()+ '"')
 os.system('git push')
