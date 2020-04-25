@@ -1,5 +1,4 @@
 import os
-import time
 import shutil
 import time
 import datetime
@@ -13,7 +12,7 @@ import glob
 DOCKER_NAME = 'minecraft-server'
 BACKUP_DIR = '../world_backups' 
 ZIP_BACKUP_DIR = BACKUP_DIR + '/zipped_backups' 
-BACKUP_LENGTH = 1 #days until the backup folder is deleted
+BACKUP_LENGTH = 7 #days until the backup folder is deleted
 LOG_FILENAME = 'world_backups/auto_updater.log'
 cserver_fpath = glob.glob('data/minecraft_server*.jar')
 
@@ -57,9 +56,20 @@ logging.info(datetime.now().isoformat() + ' : Backed up world and all other file
 #Removing folder backups longer than a specified number of days
 results = os.popen('find "../world_backups" -name "world_backup*-*.*" -type d').read().split('\n')
 
-for name in results:
-    if os.path.exists(name):
-        creationDateTime = datetime.fromisoformat(name.split('_')[3])
+print("Reviewing backups for removal. Backup will be deleted if older than " + str(BACKUP_LENGTH) + " day(s)")
+removal_count = 0
+
+for backup_name in results:
+    if os.path.exists(backup_name):
+        creationDateTime = datetime.fromisoformat(backup_name.split('_')[3])
         difference = datetime.utcnow() - creationDateTime
-        #if difference.days > BACKUP_LENGTH:
-            #os.remove(name)
+        if difference.days > BACKUP_LENGTH:
+            shutil.rmtree(backup_name)
+            removal_count += 1
+
+print(str(removal_count) + " server backup(s) have been deleted")
+
+#TODO: Push to github
+os.system('git add -u')
+os.system('git commit -m " AUTOBACKUP:' + datetime.now().isoformat()+ '"')
+os.system('git push')
