@@ -1,0 +1,16 @@
+How to create a Cron Job on MacOS
+- Check if you have an existing cron jobs
+    - crontab -l
+- Create a crontab
+    - crontab -e
+    - Format
+        - <minute[*,0–59]>    <hour[*,0–23]>     <dayOfMonth[*,1–31]>     <month[*,1–12]>     <dayOfWeek[*,0–6]>     <shell command>
+        - Shorthand
+            - @reboot         Run once, at startup.
+            - @yearly         Run once a year, "0 0 1 1 *"
+            - @annually       (same as @yearly)
+            - @monthly        Run once a month, "0 0 1 * *"
+            - @weekly         Run once a week, "0 0 * * 0"
+            - @daily          Run once a day, "0 0 * * *"
+            - @midnight       (same as @daily)
+            - @hourly         Run once an hour, "0 * * * *"

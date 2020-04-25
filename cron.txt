@@ -1,0 +1,2 @@
+Cron Job - Once a week on sunday
+0       0       *       *       0       python3 /Users/meganbailey/Documents/Minecraft/minecraft-server/autobackup/backup.py
