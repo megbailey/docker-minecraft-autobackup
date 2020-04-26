@@ -7,17 +7,15 @@ import glob
 
 # CONFIGURATION
 DOCKER_NAME = 'minecraft-server'
-BACKUP_DIR = '../world_backups' 
-SERVER_PATH = '/Users/meganbailey/Documents/Minecraft/minecraft-server/'
-PUSH_TO_GITHUB = True
+SERVER_PATH = '/Users/meganbailey/Documents/Minecraft/minecraft-server'
+BACKUP_DIR = SERVER_PATH + '/world_backups' 
 ZIP_BACKUP_DIR = BACKUP_DIR + '/zipped_backups' 
-BACKUP_LENGTH = 7 #days until the backup folder is deleted
-LOG_FILENAME = 'world_backups/auto_updater.log'
+LOG_FILENAME = BACKUP_DIR + '/auto_updater.log'
+BACKUP_LENGTH = 2 #days until the backup folder is deleted
+PUSH_TO_GITHUB = True #Option to backup to github if there is a .git in SERVER_PATH
 
-cserver_fpath = glob.glob('data/minecraft_server*.jar')
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+#----------------------------------------------------------------------------------------------------------------------------
 def backupWorld():
     #Creating directories that may not exist
     if not os.path.exists(BACKUP_DIR):
@@ -40,6 +38,7 @@ def backupWorld():
 
 
 def notifyServer():
+    #TODO: Change action user from RCON to something else
     print('\n' + datetime.now().isoformat() + ' : Notifying Server')
     logging.info(datetime.now().isoformat() + ' : Notifying Server')
     os.system('docker exec minecraft-server rcon-cli say ATTENTION: Server will shutdown soon to update.')
@@ -102,8 +101,11 @@ def pushToGithub():
 
 
 
+#--------------------------------------------------------EXECUTION--------------------------------------------------------
 
-#------------------------------------------EXECUTION------------------------------------------
+logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 print('\n---------------------------------------- STARTING BACKUP ----------------------------------------\n')
 logging.info(datetime.now().isoformat() + ' : ----------------------------------------STARTING BACKUP ----------------------------------------') 
 
@@ -115,4 +117,4 @@ restartServer()
 
 removeOldBackups()
 
-#pushToGithub()
+pushToGithub()
