@@ -1,0 +1,19 @@
+version: '3'
+services:
+  minecraft:
+    container_name: minecraft-server
+    image: itzg/minecraft-server
+    restart: 'unless-stopped'
+    ports:
+      - "25565:25565"
+    volumes:
+      - /Users/meganbailey/Documents/Minecraft/minecraft-server/data:/data
+    environment:
+      EULA: "TRUE"
+      TYPE: FORGE
+      DIFFICULTY: "normal"  
+      OPS: xcodegenie
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: 'true'
+      MEMORY: 2G
+    tty: true
+    stdin_open: true
