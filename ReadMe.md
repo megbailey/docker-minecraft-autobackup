@@ -1,5 +1,5 @@
 # Docker Minecraft Server and Autobackup
-This project utilizes [itzg's minecraft docker image](https://hub.docker.com/r/itzg/minecraft-server) to spin up a local Minecraft Java Edition server . It's a fun & simple project to familarize yourself with container technology & cron and it's a great alternative to paying monthly subscription for Minecraft Realms subscription or other SaaS/IaaS fees especially if you live in a household of gamers.
+This project utilizes [itzg's minecraft docker image](https://hub.docker.com/r/itzg/minecraft-server) to spin up a local Minecraft Java Edition server . It's a fun & simple project to familarize yourself with container technology & cron and it's a great alternative to paying monthly subscription for Minecraft Realms or other SaaS/IaaS fees especially if you share a network with a household of gamers.
 
 ## Create a Minecraft Server
 1. ``` cd docker-minecraft-server-autobackup```
