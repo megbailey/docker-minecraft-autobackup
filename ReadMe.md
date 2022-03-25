@@ -1,13 +1,17 @@
 # Docker Minecraft Server and Autobackup
-This project utilizes [itzg's minecraft docker image](https://hub.docker.com/r/itzg/minecraft-server) to spin up a local minecraft server. It's a fun & simple project to familarize yourself with container technology & cron and it's a great alternative to paying monthly subscription for Minecraft Realms subscription or other SaaS/IaaS fees especially if you live in a household of gamers.
+This project utilizes [itzg's minecraft docker image](https://hub.docker.com/r/itzg/minecraft-server) to spin up a local Minecraft Java Edition server . It's a fun & simple project to familarize yourself with container technology & cron and it's a great alternative to paying monthly subscription for Minecraft Realms subscription or other SaaS/IaaS fees especially if you live in a household of gamers.
 
 ## Create a Minecraft Server
 1. ``` cd docker-minecraft-server-autobackup```
 2. Modify docker-compose.yml for your host. At minimum, change the volume to a local path on your host. This is where Minecraft will store persistent data for your server. Modify or add any environment variables to suit your needs. For example, xcodegenie is my gamertag, so I set myself as an admin of the server. You can also modify the difficulty of the server, memory used (I recommend to increasing memory for 2x# of expected simulatenous players), and much more. For more options on configuring your minecraft server, refer to [itzg's documentation on github](https://github.com/itzg/docker-minecraft-server/blob/master/README.md)
-3. Build the minecraft server ```docker compose up```
-4. Open up Minecraft application, select connect to server, and fill in the IP of host (127.0.0.1 if local) and port in docker-compose.yml
+3. Run the minecraft server ```docker compose up```
+4. Open up Minecraft application, select Play > Multiplayer > Add Server, and fill in the IP of host (127.0.0.1 if local) and port in docker-compose.yml
 4. Start playing!
 
+If you have trouble connecting:
+1. Try connecting on the host, 127.0.0.1:25565
+2. Check health of the container - it may still be starting up. ```docker container ls```
+3. If you are trying to connect to the server from a host on the network, check that your router isn't blocking access
 ### Backup your server
 Modify [backup.py's](backup.py) configuration variables to suite your needs.
 

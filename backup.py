@@ -7,7 +7,7 @@ import glob
 
 # CONFIGURATION
 DOCKER_NAME = 'minecraft-server'
-SERVER_PATH = '/Users/meganbailey/Documents/Minecraft/minecraft-server'
+SERVER_PATH = '/Users/meganbailey/Minecraft/minecraft-server'
 BACKUP_DIR = SERVER_PATH + '/world_backups' 
 ZIP_BACKUP_DIR = BACKUP_DIR + '/zipped_backups' 
 LOG_FILENAME = BACKUP_DIR + '/auto_updater.log'

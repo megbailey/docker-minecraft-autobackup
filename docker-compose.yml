@@ -7,13 +7,15 @@ services:
     ports:
       - "25565:25565"
     volumes:
-      - /Users/meganbailey/Documents/Minecraft/minecraft-server/data:/data
+      - /Users/meganbailey/Minecraft/minecraft-server/data:/data
+    healthcheck:
+      test: ["CMD", "mc-monitor status" ]
     environment:
       EULA: "TRUE"
-      TYPE: FORGE
+      TYPE: "FORGE"
       DIFFICULTY: "normal"  
-      OPS: xcodegenie
-      ANNOUNCE_PLAYER_ACHIEVEMENTS: 'true'
-      MEMORY: 2G
+      OPS: "xcodegenie"
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
+      MEMORY: 3G
     tty: true
     stdin_open: true
